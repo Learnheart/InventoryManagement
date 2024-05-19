@@ -1,13 +1,17 @@
 package com.example.demo.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
@@ -19,4 +23,6 @@ public class Product {
     private String category;
     @NonNull
     private Double productPrice;
+//    @OneToMany(mappedBy = "product")
+//    private Set<OrderDetail> orderDetails;
 }

@@ -1,10 +1,12 @@
 package com.example.demo.Dto;
 
+import com.example.demo.Entity.Orders;
 import com.example.demo.Entity.Product;
 import com.example.demo.Entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.hibernate.query.Order;
 
 import java.util.List;
 
@@ -27,4 +29,5 @@ public class ReqRes {
     private String password;
     private List<Product> products;
     private User user;
+    private List<Orders> orders;
 }
