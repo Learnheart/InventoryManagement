@@ -55,7 +55,7 @@ public class UserController {
         userRepository.deleteById(empId);
         return "User " + empId + "deleted successfully!";
     }
-    /** You can use this to get the details(name,email,role,ip, e.t.c) of user accessing the service*/
+
     @GetMapping("/public/id")
     public String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

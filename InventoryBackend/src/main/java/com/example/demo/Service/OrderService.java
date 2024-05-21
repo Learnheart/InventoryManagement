@@ -11,9 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class OrderService {
@@ -82,5 +80,18 @@ public class OrderService {
 
         return orderRepository.save(currentOrder);
     }
+    public Integer totalExportProducts(Integer productId) {
+        List<Orders> allOrders = orderRepository.findAll();
+        int totalQuantity = 0;
 
+        for (Orders order : allOrders) {
+            for (OrderDetail detail : order.getOrderDetails()) {
+                if (detail.getProduct().getProductId().equals(productId)) {
+                    totalQuantity += detail.getQuantity();
+                }
+            }
+        }
+
+        return totalQuantity;
+    }
 }

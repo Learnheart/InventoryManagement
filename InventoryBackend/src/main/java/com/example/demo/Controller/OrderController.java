@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class OrderController {
@@ -38,5 +39,9 @@ public class OrderController {
     @GetMapping("/public/orderDetail/{orderId}")
     public ResponseEntity<Orders> orderDetail(@PathVariable Integer orderId) {
         return ResponseEntity.ok(orderService.getOrderById(orderId));
+    }
+    @GetMapping("/public/productQuantities/{productId}")
+    public Integer getProductQuantitiesFromOrders(@PathVariable Integer productId) {
+        return orderService.totalExportProducts(productId);
     }
 }

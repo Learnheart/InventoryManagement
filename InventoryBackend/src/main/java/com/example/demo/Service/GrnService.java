@@ -74,4 +74,18 @@ public class GrnService {
         currentNote.setTotalPrice(newNote.getTotalPrice());
         return grnRepository.save(currentNote);
     }
+    public Integer totalImportProducts(Integer productId) {
+        List<GoodReceivedNote> allImports = grnRepository.findAll();
+        int totalQuantity = 0;
+
+        for (GoodReceivedNote note : allImports) {
+            for (GrnDetail detail : note.getGrnDetails()) {
+                if (detail.getProduct().getProductId().equals(productId)) {
+                    totalQuantity += detail.getQuantity();
+                }
+            }
+        }
+
+        return totalQuantity;
+    }
 }

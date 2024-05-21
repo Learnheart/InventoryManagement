@@ -30,4 +30,9 @@ public class GrnController {
     public ResponseEntity<GoodReceivedNote> updateGrn(@PathVariable Integer grnId, @RequestBody GoodReceivedNote note) {
         return ResponseEntity.ok(grnService.updateGrn(grnId, note));
     }
+    @GetMapping("/public/totalImportProducts/{productId}")
+    public ResponseEntity<Integer> totalImportProducts(@PathVariable Integer productId) {
+        return ResponseEntity.ok(grnService.totalImportProducts(productId));
+    }
 }
+
