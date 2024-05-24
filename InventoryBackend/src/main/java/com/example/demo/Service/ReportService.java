@@ -78,7 +78,7 @@ public class ReportService {
         }
         return importExportQuantity; //first is import & second is export
     }
-//    Report theo tháng
+//    Start date < report < end date (nếu muốn tính report của ngày hiện tại thì end date sẽ phải +1)
     public Map<String, Pair<Integer, Integer>> reportInTimeRange(LocalDate startDate, LocalDate endDate) {
         Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date end = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -87,7 +87,6 @@ public class ReportService {
         List<Orders> allOrders = orderRepository.findAll();
         Map<String, Pair<Integer, Integer>> importExportMap = new HashMap<>();
 
-        // Calculate import quantities within the date range
         for (GoodReceivedNote note : allImports) {
             if (note.getImportDate().after(start) && note.getImportDate().before(end)) {
                 for (GrnDetail detail : note.getGrnDetails()) {
