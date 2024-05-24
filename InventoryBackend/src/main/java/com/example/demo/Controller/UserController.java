@@ -70,7 +70,6 @@ public class UserController {
         return ResponseEntity.ok("Only available for inventory staff");
     }
     @GetMapping("/sales")
-    @PostMapping("hasRole('SALES')")
     public ResponseEntity<String> welcomeSales() {
         return ResponseEntity.ok("Only available for inventory sales");
     }

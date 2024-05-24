@@ -29,7 +29,7 @@ public class Orders {
     private String paymentMethod;
 //    @OneToMany(mappedBy = "order")
 //    private Set<OrderDetail> orderDetails;
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderDetail> orderDetails;
     private Double prices;

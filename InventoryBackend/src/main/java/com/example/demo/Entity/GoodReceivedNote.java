@@ -23,7 +23,7 @@ public class GoodReceivedNote {
     @Temporal(TemporalType.DATE)
     private Date importDate;
     private String empId;
-    @OneToMany(mappedBy = "note", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "note", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<GrnDetail> grnDetails;
     private Double totalPrice;

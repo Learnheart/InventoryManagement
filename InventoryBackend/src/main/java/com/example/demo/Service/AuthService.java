@@ -65,15 +65,15 @@ public class AuthService {
         return response;
     }
 
-    public ReqRes refreshToken(ReqRes refreshTokenReqiest){
+    public ReqRes refreshToken(ReqRes refreshTokenRequest){
         ReqRes response = new ReqRes();
-        Integer empId = Integer.valueOf(jwtUtils.extractUsername(refreshTokenReqiest.getToken()));
+        Integer empId = Integer.valueOf(jwtUtils.extractUsername(refreshTokenRequest.getToken()));
         User users = userRepository.findById(empId).orElseThrow();
-        if (jwtUtils.isTokenValid(refreshTokenReqiest.getToken(), users)) {
+        if (jwtUtils.isTokenValid(refreshTokenRequest.getToken(), users)) {
             var jwt = jwtUtils.generateToken(users);
             response.setStatusCode(200);
             response.setToken(jwt);
-            response.setRefreshToken(refreshTokenReqiest.getToken());
+            response.setRefreshToken(refreshTokenRequest.getToken());
             response.setExpirationTime("24Hr");
             response.setMessage("Successfully Refreshed Token");
         }
