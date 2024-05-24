@@ -22,9 +22,9 @@ public class OrderController {
         Orders newOrder = orderService.createOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
     }
-    @GetMapping("public/orderList")
-    public ResponseEntity<List<Orders>> orderList() {
-        return ResponseEntity.ok(orderService.getAllOrders());
+    @GetMapping("/public/orderList")
+    public List<Orders> getAllOrders(@RequestParam(value = "searchKey", required = false) String searchKey) {
+        return orderService.getAllOrders(searchKey);
     }
     @DeleteMapping("/manager/deleteOrder/{orderId}")
     public ResponseEntity<String> deleteOrder(@PathVariable Integer orderId) {

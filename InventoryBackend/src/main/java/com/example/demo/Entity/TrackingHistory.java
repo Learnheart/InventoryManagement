@@ -11,21 +11,22 @@ import java.util.Date;
 @Entity
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Tracking {
+@AllArgsConstructor
+public class TrackingHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Integer trackingId;
-    @Temporal(TemporalType.DATE)
-    private Date trackingAt;
     private Integer productId;
+    private Integer oldQuantityDB;
+    private Integer newQuantityDB;
     private String empId;
-    private Integer quantityDB;
-    private Integer quantityTracking;
+    @Temporal(TemporalType.DATE)
+    private Date changeAt;
 
     @PrePersist
     protected void onCreate() {
-        this.trackingAt = new Date();
+        this.changeAt = new Date();
     }
 }

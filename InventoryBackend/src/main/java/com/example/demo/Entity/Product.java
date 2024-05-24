@@ -23,6 +23,7 @@ public class Product {
     private String category;
     @NonNull
     private Double productPrice;
+//    private Integer productQuantity;
 //    @OneToMany(mappedBy = "product")
 //    private Set<OrderDetail> orderDetails;
 }
