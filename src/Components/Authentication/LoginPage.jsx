@@ -127,11 +127,6 @@ const LoginPage = () => {
         <div className="button" onClick={handleSubmit}>
           <span>Log in</span>
         </div>
-      
-      <div className="moveToSignIn">
-        <span>Do not have an account?</span>
-        <NavLink to={`/auth/signup`}>Register</NavLink>
-      </div>
       </main>
     </div>
   );
