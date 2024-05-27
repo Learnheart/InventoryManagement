@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -21,13 +21,13 @@ const Sidebar = () => {
         <NavLink to="/dashboard" className="nav-link" activeclassname="active">
           Dashboard
         </NavLink>
-        <NavLink to="/reports" className="nav-link" activeclassname="active">
+        <NavLink to="/products" className="nav-link" activeclassname="active">
           Manage product
         </NavLink>
-        <NavLink to="/settings" className="nav-link" activeclassname="active">
+        <NavLink to="/" className="nav-link" activeclassname="active">
           Tracking
         </NavLink>
-        <NavLink to="/settings" className="nav-link" activeclassname="active">
+        <NavLink to="/grnList" className="nav-link" activeclassname="active">
           Import
         </NavLink>
         <NavLink to="/settings" className="nav-link" activeclassname="active">

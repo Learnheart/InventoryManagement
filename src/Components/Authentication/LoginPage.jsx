@@ -1,4 +1,3 @@
-// LoginPage.jsx
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
@@ -6,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import AuthService from "../../Api/AuthService";
 import { toast } from "react-toastify";
+import "./Login.css";
+import logo from "../../image/logo.jpg";
 
 const NUMBER_REGEX = /^[0-9\b]+$/;
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { login, user } = useAuth();
+  const { login } = useAuth();
   const userRef = useRef();
 
   const [empId, setEmpId] = useState("");
@@ -52,8 +53,6 @@ const LoginPage = () => {
         setTimeout(() => {
           navigate("/public/transaction-report");
         }, 0);
-
-        // navigate("/public/transaction-report");
       } else {
         setErrMsg("Login failed. Please try again!");
         if (response.data && response.data.message) {
@@ -69,11 +68,15 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <div className="header">
-        <p className="title">Log In</p>
-        {errMsg && <p className="error-message">{errMsg}</p>}
-      </div>
-      <div className="form-content">
+      <aside className="left-side">
+        {/* Thêm logo và tiêu đề nếu cần */}
+        <img src={logo} alt="KANBAN Logo" />
+      </aside>
+      <main className="form-content">
+        <div className="header">
+          {errMsg && <p className="error-message">{errMsg}</p>}
+        </div>
+        <h3 className="title">Log In</h3>
         <div className="form-group">
           <label htmlFor="empId">Employee ID:</label>
           <input
@@ -122,11 +125,7 @@ const LoginPage = () => {
         <div className="button" onClick={handleSubmit}>
           <span>Log in</span>
         </div>
-      </div>
-      <div className="moveToSignUn">
-        <span>Do not have any account?</span>
-        <NavLink to={`/auth/signup`}>Register</NavLink>
-      </div>
+      </main>
     </div>
   );
 };

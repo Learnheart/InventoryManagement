@@ -5,6 +5,8 @@ import AuthService from "../../Api/AuthService";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
+import "./Login.css";
+import logo from "../../image/logo.jpg";
 
 const NUMBER = /^[0-9\b]+$/;
 
@@ -31,6 +33,7 @@ function RegistrationPage() {
   useEffect(() => {
     setValidEmpName(!NUMBER.test(empName));
   }, [empName]);
+
   useEffect(() => {
     setValidPhoneNumber(
       phoneNumber.length === 0 ||
@@ -71,12 +74,15 @@ function RegistrationPage() {
 
   return (
     <div className="register-container">
-      <div className="header">
-        <p className="title">Create a new account</p>
-        {errMsg && <p className="error-message">{errMsg}</p>}
-      </div>
-      <div className="form-content">
-        {/* Name */}
+      <aside className="left-side">
+        {/* Sử dụng đúng tên biến import */}
+        <img src={logo} alt="KANBAN Logo" />
+      </aside>
+      <main className="form-content">
+        <div className="header">
+          {errMsg && <p className="error-message">{errMsg}</p>}
+        </div>
+        <h3 className="title">Create an account</h3>
         <div className="form-group">
           <label htmlFor="empName">Name*</label>
           <input
@@ -90,7 +96,6 @@ function RegistrationPage() {
             <p className="error-message">Invalid Name</p>
           )}
         </div>
-        {/* Phone number */}
         <div className="form-group">
           <label htmlFor="phoneNumber">Phone number*</label>
           <input
@@ -104,7 +109,6 @@ function RegistrationPage() {
             <p className="error-message">Invalid Phone number</p>
           )}
         </div>
-        {/* Address */}
         <div className="form-group">
           <label htmlFor="address">Address</label>
           <input
@@ -115,7 +119,6 @@ function RegistrationPage() {
             autoComplete="off"
           />
         </div>
-        {/* Password */}
         <div className="form-group">
           <label htmlFor="password">Password:</label>
           <div className="password-input-container">
@@ -141,7 +144,6 @@ function RegistrationPage() {
             <p className="error-message">Password cannot be empty</p>
           )}
         </div>
-        {/* Role */}
         <div className="form-group">
           <label htmlFor="role">Role</label>
           <select
@@ -162,13 +164,7 @@ function RegistrationPage() {
         <div className="button" onClick={handleSubmit}>
           <span>Sign Up</span>
         </div>
-      </div>
-      <div className="moveToSignIn">
-        <span className="font-body text-[14px] text-grey-500">
-          Have an account?
-        </span>
-        <NavLink to={`/auth/signin`}>Log in</NavLink>
-      </div>
+      </main>
     </div>
   );
 }
