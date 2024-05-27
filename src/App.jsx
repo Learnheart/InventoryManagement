@@ -1,6 +1,6 @@
 import "./App.css";
 import LoginPage from "./Components/Authentication/LoginPage";
-import Report from "./Pages/Homepage/Report";
+import Dashboard from "./Pages/Reports/Dashboard";
 import { AuthProvider } from "./Context/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/auth/signin" element={<LoginPage />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/public/transaction-report" element={<Report />} />
+            <Route path="/public/transaction-report" element={<Dashboard />} />
           </Route>
           <Route path="/auth/signup" element={<RegistrationPage />} />
         </Routes>

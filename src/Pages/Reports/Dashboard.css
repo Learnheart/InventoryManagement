@@ -1,0 +1,14 @@
+.main {
+  background-color: #d0d3d9;
+  bottom: 0;
+}
+
+#transactionChart {
+  height: 800px !important;
+}
+.chart-container {
+  width: 100% !important;
+  height: 800px !important;
+  background-color: white;
+  padding: 30px;
+}
