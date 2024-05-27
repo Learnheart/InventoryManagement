@@ -16,7 +16,7 @@ const ImportList = () => {
       navigate("/auth/signin");
     } else if (user.role != "MANAGER" && user.role != "INVENTORY_STAFF") {
       alert("You don't have authorization to access this resource!");
-      navigate("/grnList");
+      navigate("/public/transaction-report");
     }
   }, [user, navigate]);
 

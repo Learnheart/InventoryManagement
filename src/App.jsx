@@ -15,6 +15,7 @@ import AddProductPage from "./Pages/Manager/ManageProduct/AddProductPage";
 import UpdateProductPage from "./Pages/Manager/ManageProduct/UpdateProductPage";
 import ImportList from "./Pages/Manager/ManageImport/ImportList";
 import ImportDetail from "./Pages/Manager/ManageImport/ImportDetail";
+// import GrnDetail from "./Components/Grn/GrnDetail";
 
 // root component
 function App() {
