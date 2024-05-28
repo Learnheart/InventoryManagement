@@ -23,13 +23,13 @@ const Sidebar = () => {
         <NavLink to="/dashboard" className="nav-link" activeclassname="active">
           <FaHome className="nav-icon" /> Dashboard
         </NavLink>
-        <NavLink to="/reports" className="nav-link" activeclassname="active">
+        <NavLink to="/products" className="nav-link" activeclassname="active">
           <FaBox className="nav-icon" /> Manage Product
         </NavLink>
         <NavLink to="/tracking" className="nav-link" activeclassname="active">
           <FaTruck className="nav-icon" /> Tracking
         </NavLink>
-        <NavLink to="/imports" className="nav-link" activeclassname="active">
+        <NavLink to="/grnList" className="nav-link" activeclassname="active">
           <FaFileImport className="nav-icon" /> Import
         </NavLink>
         <NavLink to="/orders" className="nav-link" activeclassname="active">
