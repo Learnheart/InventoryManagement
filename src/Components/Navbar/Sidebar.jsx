@@ -3,9 +3,16 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import { FaHome, FaBox, FaTruck, FaFileImport, FaShoppingCart, FaUsers } from "react-icons/fa"; // Import icons
+import {
+  FaHome,
+  FaBox,
+  FaTruck,
+  FaFileImport,
+  FaShoppingCart,
+  FaUsers,
+} from "react-icons/fa"; // Import icons
 import "./Sidebar.css";
-import logo_ngang from "../../image/logo_ngang.jpg"; 
+import logo_ngang from "../../image/logo_ngang.jpg";
 
 const Sidebar = () => {
   const { logout } = useAuth();
@@ -24,24 +31,22 @@ const Sidebar = () => {
           <FaHome className="nav-icon" /> Dashboard
         </NavLink>
         <NavLink to="/products" className="nav-link" activeclassname="active">
-          Manage product
-        <NavLink to="/reports" className="nav-link" activeclassname="active">
           <FaBox className="nav-icon" /> Manage Product
         </NavLink>
-        <NavLink to="/" className="nav-link" activeclassname="active">
-          Tracking
         <NavLink to="/tracking" className="nav-link" activeclassname="active">
           <FaTruck className="nav-icon" /> Tracking
         </NavLink>
         <NavLink to="/grnList" className="nav-link" activeclassname="active">
-          Import
-        <NavLink to="/imports" className="nav-link" activeclassname="active">
           <FaFileImport className="nav-icon" /> Import
         </NavLink>
         <NavLink to="/orders" className="nav-link" activeclassname="active">
           <FaShoppingCart className="nav-icon" /> Orders
         </NavLink>
-        <NavLink to="/manage-employee" className="nav-link" activeclassname="active">
+        <NavLink
+          to="/manage-employee"
+          className="nav-link"
+          activeclassname="active"
+        >
           <FaUsers className="nav-icon" /> Manage Employee
         </NavLink>
       </Nav>

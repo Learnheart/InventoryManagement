@@ -69,7 +69,7 @@ const GrnList = () => {
     <div>
       <div className="header">
         <h1>GRN List</h1>
-        <button>Add note</button>
+        <button onClick={() => navigate("/staff/createNote")}>Add note</button>
       </div>
       <table className="table">
         <thead>
