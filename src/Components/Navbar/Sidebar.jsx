@@ -3,9 +3,16 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
-import { FaHome, FaBox, FaTruck, FaFileImport, FaShoppingCart, FaUsers } from "react-icons/fa"; // Import icons
+import {
+  FaHome,
+  FaBox,
+  FaTruck,
+  FaFileImport,
+  FaShoppingCart,
+  FaUsers,
+} from "react-icons/fa"; // Import icons
 import "./Sidebar.css";
-import logo_ngang from "../../image/logo_ngang.jpg"; 
+import logo_ngang from "../../image/logo_ngang.jpg";
 
 const Sidebar = () => {
   const { logout } = useAuth();
@@ -35,7 +42,11 @@ const Sidebar = () => {
         <NavLink to="/orders" className="nav-link" activeclassname="active">
           <FaShoppingCart className="nav-icon" /> Orders
         </NavLink>
-        <NavLink to="/manage-employee" className="nav-link" activeclassname="active">
+        <NavLink
+          to="/manage-employee"
+          className="nav-link"
+          activeclassname="active"
+        >
           <FaUsers className="nav-icon" /> Manage Employee
         </NavLink>
       </Nav>
