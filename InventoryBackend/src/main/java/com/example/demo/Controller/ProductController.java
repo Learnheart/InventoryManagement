@@ -23,7 +23,7 @@ public class ProductController {
     private ResponseEntity<Product> getProductById(@PathVariable("productId") Integer productId) {
         Optional<Product> product = productService.getProductById(productId);
         if (product.isPresent()) {
-            return new ResponseEntity<Product>(product.get(), HttpStatus.FOUND);
+            return new ResponseEntity<Product>(product.get(), HttpStatus.OK);
         }else {
             return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
         }

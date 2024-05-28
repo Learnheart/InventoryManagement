@@ -22,15 +22,19 @@ public class GrnController {
     private ResponseEntity<String> deleteProduct(@PathVariable Integer grnId) {
         return ResponseEntity.ok(grnService.deleteGrn(grnId));
     }
-    @GetMapping("public/grnList")
+    @GetMapping("/grnList")
     private ResponseEntity<List<GoodReceivedNote>> grnList() {
         return ResponseEntity.ok(grnService.getAllGrn());
+    }
+    @GetMapping("/grn/{grnId}")
+    private ResponseEntity<GoodReceivedNote> getNoteById(@PathVariable Integer grnId) {
+        return ResponseEntity.ok(grnService.getNoteById(grnId));
     }
     @PutMapping("/staff/updateGrn/{grnId}")
     public ResponseEntity<GoodReceivedNote> updateGrn(@PathVariable Integer grnId, @RequestBody GoodReceivedNote note) {
         return ResponseEntity.ok(grnService.updateGrn(grnId, note));
     }
-    @GetMapping("/public/totalImportProducts/{productId}")
+    @GetMapping("/totalImportProducts/{productId}")
     public ResponseEntity<Integer> totalImportProducts(@PathVariable Integer productId) {
         return ResponseEntity.ok(grnService.totalImportProducts(productId));
     }
