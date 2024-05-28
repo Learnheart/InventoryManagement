@@ -18,6 +18,7 @@ import ImportDetail from "./Pages/Manager/ManageImport/ImportDetail";
 import AddImport from "./Pages/Manager/ManageImport/AddImport";
 import UpdateImport from "./Pages/Manager/ManageImport/UpdateImport";
 import ExportList from "./Pages/Manager/MangeOrder/ExportList";
+import NewExport from "./Pages/Manager/MangeOrder/NewExport";
 
 // root component
 function App() {
@@ -33,12 +34,14 @@ function App() {
             element={<UpdateProductPage />}
           />
           <Route path="/manager/addProduct" element={<AddProductPage />} />
+
           <Route path="/grnList" element={<ImportList />} />
           <Route path="/grnDetail/:grnId" element={<ImportDetail />} />
           <Route path="/staff/createNote" element={<AddImport />} />
           <Route path="/staff/updateGrn/:grnId" element={<UpdateImport />} />
 
           <Route path="/orderList" element={<ExportList />} />
+          <Route path="/sale/createOrder" element={<NewExport />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="/public/transaction-report" element={<Dashboard />} />
