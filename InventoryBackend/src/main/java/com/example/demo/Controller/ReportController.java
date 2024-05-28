@@ -32,8 +32,8 @@ public class ReportController {
 //    test api: http://localhost:4000/public/monthly-report?startDate=2024-05-20&endDate=2024-05-25
     @GetMapping("/public/monthly-report")
     public ResponseEntity<Map<String, Pair<Integer, Integer>>> reportInTime(
-            @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-            @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
+            @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+            @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
     ) {
         return ResponseEntity.ok(reportService.reportInTimeRange(startDate, endDate));
     }

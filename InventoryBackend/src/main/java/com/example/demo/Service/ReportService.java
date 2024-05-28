@@ -80,15 +80,17 @@ public class ReportService {
     }
 //    Start date < report < end date (nếu muốn tính report của ngày hiện tại thì end date sẽ phải +1)
     public Map<String, Pair<Integer, Integer>> reportInTimeRange(LocalDate startDate, LocalDate endDate) {
-        Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date end = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        // Convert LocalDate to Date if not null
+        Date start = startDate != null ? Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
+        Date end = endDate != null ? Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant()) : null;
 
         List<GoodReceivedNote> allImports = grnRepository.findAll();
         List<Orders> allOrders = orderRepository.findAll();
         Map<String, Pair<Integer, Integer>> importExportMap = new HashMap<>();
 
         for (GoodReceivedNote note : allImports) {
-            if (note.getImportDate().after(start) && note.getImportDate().before(end)) {
+            // Check date range if start and end dates are provided
+            if ((start == null || note.getImportDate().after(start)) && (end == null || note.getImportDate().before(end))) {
                 for (GrnDetail detail : note.getGrnDetails()) {
                     String productName = detail.getProduct().getProductName();
                     int quantity = detail.getQuantity();
@@ -100,7 +102,8 @@ public class ReportService {
         }
 
         for (Orders order : allOrders) {
-            if (order.getExportDate().after(start) && order.getExportDate().before(end)) {
+            // Check date range if start and end dates are provided
+            if ((start == null || order.getExportDate().after(start)) && (end == null || order.getExportDate().before(end))) {
                 for (OrderDetail detail : order.getOrderDetails()) {
                     String productName = detail.getProduct().getProductName();
                     int quantity = detail.getQuantity();
@@ -113,4 +116,40 @@ public class ReportService {
 
         return importExportMap;
     }
+
+
+//    public Map<String, Pair<Integer, Integer>> reportInTimeRange(LocalDate startDate, LocalDate endDate) {
+//        Date start = Date.from(startDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//        Date end = Date.from(endDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+//
+//        List<GoodReceivedNote> allImports = grnRepository.findAll();
+//        List<Orders> allOrders = orderRepository.findAll();
+//        Map<String, Pair<Integer, Integer>> importExportMap = new HashMap<>();
+//
+//        for (GoodReceivedNote note : allImports) {
+//            if (note.getImportDate().after(start) && note.getImportDate().before(end)) {
+//                for (GrnDetail detail : note.getGrnDetails()) {
+//                    String productName = detail.getProduct().getProductName();
+//                    int quantity = detail.getQuantity();
+//
+//                    Pair<Integer, Integer> importExportPair = importExportMap.getOrDefault(productName, Pair.of(0, 0));
+//                    importExportMap.put(productName, Pair.of(importExportPair.getFirst() + quantity, importExportPair.getSecond()));
+//                }
+//            }
+//        }
+//
+//        for (Orders order : allOrders) {
+//            if (order.getExportDate().after(start) && order.getExportDate().before(end)) {
+//                for (OrderDetail detail : order.getOrderDetails()) {
+//                    String productName = detail.getProduct().getProductName();
+//                    int quantity = detail.getQuantity();
+//
+//                    Pair<Integer, Integer> importExportPair = importExportMap.getOrDefault(productName, Pair.of(0, 0));
+//                    importExportMap.put(productName, Pair.of(importExportPair.getFirst(), importExportPair.getSecond() + quantity));
+//                }
+//            }
+//        }
+//
+//        return importExportMap;
+//    }
 }
