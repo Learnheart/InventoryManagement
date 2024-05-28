@@ -6,7 +6,7 @@ import "./Header.css";
 const Header = () => {
   return (
     <div>
-      <div className="header bg-light">
+      <div className="header">
         <form className="d-flex" role="search">
           <input
             className="form-control me-2"
