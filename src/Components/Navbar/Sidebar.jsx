@@ -39,7 +39,7 @@ const Sidebar = () => {
         <NavLink to="/grnList" className="nav-link" activeclassname="active">
           <FaFileImport className="nav-icon" /> Import
         </NavLink>
-        <NavLink to="/orders" className="nav-link" activeclassname="active">
+        <NavLink to="/orderList" className="nav-link" activeclassname="active">
           <FaShoppingCart className="nav-icon" /> Orders
         </NavLink>
         <NavLink

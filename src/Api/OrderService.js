@@ -1,35 +1,35 @@
 import customAxios from "./customApi";
 
-class GrnService {
-  async createNote(note) {
+class OrderService {
+  async createOrder(order) {
     try {
-      return await customAxios.post("/staff/createNote", note);
+      return await customAxios.post("/sale/createOrder", order);
     } catch (error) {
       return error.response;
     }
   }
 
-  async getNoteById(grnId) {
+  async getOrderById(orderId) {
     try {
-      return await customAxios.get(`/grn/${grnId}`);
+      return await customAxios.get(`/orderDetail/${orderId}`);
     } catch (error) {
       console.error("Error adding note:", error.response);
       throw error;
     }
   }
 
-  async grnList() {
+  async orderList() {
     try {
-      const response = await customAxios.get("/grnList");
+      const response = await customAxios.get("/orderList");
       return response.data; // Ensure to return the data property
     } catch (error) {
       return error.response;
     }
   }
 
-  async updateGrn(grnId, grnData) {
+  async updateOrder(orderId, order) {
     try {
-      return await customAxios.put(`/staff/updateGrn/${grnId}`, grnData);
+      return await customAxios.put(`/sale/updateOrder/${orderId}`, order);
     } catch (error) {
       console.error("Error updating note:", error);
 
@@ -47,21 +47,21 @@ class GrnService {
     }
   }
 
-  async deleteGrn(grnId) {
+  async deleteOrder(orderId) {
     try {
-      return await customAxios.delete(`/manager/deleteGrn/${grnId}`);
+      return await customAxios.delete(`/manager/deleteOrder/${orderId}`);
     } catch (error) {
       error.response;
     }
   }
 
-  async totalImportProducts(productId) {
+  async totalExportProducts(productId) {
     try {
-      return await customAxios.get(`/totalImportProducts/${productId}`);
+      return await customAxios.get(`/productQuantities/${productId}`);
     } catch (error) {
       error.response;
     }
   }
 }
 
-export default new GrnService();
+export default new OrderService();
