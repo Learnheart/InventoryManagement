@@ -14,7 +14,8 @@ customAxios.interceptors.request.use(
     // Add Authorization header with Bearer token from localStorage
     const token = localStorage.getItem("token");
     if (token) {
-      config.headers.token = `Bearer ${token}`;
+      // config.headers.token = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;

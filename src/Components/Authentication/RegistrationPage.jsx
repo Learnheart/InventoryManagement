@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import "./Login.css";
-import logo from "../../image/logo.jpg"; 
+import logo from "../../image/logo.jpg";
 
 const NUMBER = /^[0-9\b]+$/;
 
@@ -37,7 +37,7 @@ function RegistrationPage() {
   useEffect(() => {
     setValidPhoneNumber(
       phoneNumber.length === 0 ||
-      (NUMBER.test(phoneNumber) && phoneNumber.length === 10)
+        (NUMBER.test(phoneNumber) && phoneNumber.length === 10)
     );
   }, [phoneNumber]);
 
@@ -163,12 +163,6 @@ function RegistrationPage() {
         </div>
         <div className="button" onClick={handleSubmit}>
           <span>Sign Up</span>
-        </div>
-        <div className="moveToSignIn">
-          <span className="font-body text-[14px] text-grey-500">
-            Have an account?
-          </span>
-          <NavLink to={`/auth/signin`}>Log in</NavLink>
         </div>
       </main>
     </div>

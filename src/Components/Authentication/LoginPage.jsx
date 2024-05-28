@@ -6,7 +6,7 @@ import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
 import AuthService from "../../Api/AuthService";
 import { toast } from "react-toastify";
 import "./Login.css";
-import logo from "../../image/logo.jpg"; 
+import logo from "../../image/logo.jpg";
 
 const NUMBER_REGEX = /^[0-9\b]+$/;
 
@@ -53,7 +53,6 @@ const LoginPage = () => {
         setTimeout(() => {
           navigate("/public/transaction-report");
         }, 0);
-
       } else {
         setErrMsg("Login failed. Please try again!");
         if (response.data && response.data.message) {
@@ -75,7 +74,6 @@ const LoginPage = () => {
       </aside>
       <main className="form-content">
         <div className="header">
-          
           {errMsg && <p className="error-message">{errMsg}</p>}
         </div>
         <h3 className="title">Log In</h3>
@@ -127,11 +125,6 @@ const LoginPage = () => {
         <div className="button" onClick={handleSubmit}>
           <span>Log in</span>
         </div>
-      
-      <div className="moveToSignIn">
-        <span>Do not have an account?</span>
-        <NavLink to={`/auth/signup`}>Register</NavLink>
-      </div>
       </main>
     </div>
   );
