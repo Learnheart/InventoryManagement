@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
+  const { user } = useAuth();
+
+  // useEffect(() => {
+  //   if (user.role == "MANAGER") {
+
+  //   }
+  // })
   return (
     <div>
       <div className="header">
@@ -18,6 +25,14 @@ const Header = () => {
             Search
           </button>
         </form>
+        <div className="name">
+          Welcome{" "}
+          {user.role && (
+            <span>
+              <b>{user.role}</b>
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

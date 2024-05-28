@@ -7,6 +7,7 @@ const OrderCreated = () => {
   const navigate = useNavigate();
   const [order, setOrder] = useState({
     orderDetails: [],
+    paymentMethod: "", // Adding payment method to the state
   });
 
   const [details, setDetails] = useState({
@@ -22,6 +23,14 @@ const OrderCreated = () => {
     });
   };
 
+  const handlePaymentMethodChange = (e) => {
+    const { value } = e.target;
+    setOrder({
+      ...order,
+      paymentMethod: value,
+    });
+  };
+
   const addDetail = () => {
     const newDetail = {
       product: {
@@ -30,14 +39,14 @@ const OrderCreated = () => {
       quantity: parseInt(details.quantity, 10),
     };
 
-    setOrder((prevNote) => ({
-      ...prevNote,
-      grnDetails: [...prevNote.grnDetails, newDetail],
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      orderDetails: [...prevOrder.orderDetails, newDetail],
     }));
 
     // Reset detail form
     setDetails({
-      productId: "0",
+      productId: "",
       quantity: 0,
     });
   };
@@ -47,18 +56,14 @@ const OrderCreated = () => {
     try {
       const response = await OrderService.createOrder(order);
       if (response.status === 200 || response.status === 201) {
-        alert("Note created successfully");
-        // Reset form
-        // setNote({
-        //   grnDetails: [],
-        // });
+        alert("Order created successfully");
         navigate("/orderList");
       } else {
-        alert("Error creating note: " + response.data.message);
+        alert("Error creating order: " + response.data.message);
       }
     } catch (error) {
-      console.error("Error creating note:", error);
-      alert("Error creating note: " + error.message);
+      console.error("Error creating order:", error);
+      alert("Error creating order: " + error.message);
     }
   };
 
@@ -90,7 +95,7 @@ const OrderCreated = () => {
           Add Detail
         </button>
         <div>
-          <h3>GRN Details</h3>
+          <h3>Order Details</h3>
           <ul>
             {order.orderDetails.map((detail, index) => (
               <li key={index}>
@@ -99,6 +104,21 @@ const OrderCreated = () => {
               </li>
             ))}
           </ul>
+        </div>
+        <div>
+          <label>Select Payment Method</label>
+          <select
+            value={order.paymentMethod}
+            onChange={handlePaymentMethodChange}
+            required
+          >
+            <option value="" disabled>
+              Select payment method
+            </option>
+            <option value="Cash">Cash</option>
+            <option value="Credit Card">Credit card</option>
+            <option value="Internet Banking">Internet banking</option>
+          </select>
         </div>
         <button type="submit">Add Order</button>
       </form>

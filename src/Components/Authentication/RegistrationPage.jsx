@@ -64,7 +64,7 @@ function RegistrationPage() {
     console.log(response);
 
     if (response.status === 200 && response.data) {
-      navigate(`/auth/signin`);
+      navigate(`/manager/userList`);
       toast.success(response.data.message);
     } else {
       toast.error(response.data.message);
