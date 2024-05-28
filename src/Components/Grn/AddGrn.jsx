@@ -48,10 +48,6 @@ const AddGrn = () => {
       const response = await GrnService.createNote(note);
       if (response.status === 200 || response.status === 201) {
         alert("Note created successfully");
-        // Reset form
-        // setNote({
-        //   grnDetails: [],
-        // });
         navigate("/grnList");
       } else {
         alert("Error creating note: " + response.data.message);
@@ -63,10 +59,10 @@ const AddGrn = () => {
   };
 
   return (
-    <div>
-      <h2>Add New Note</h2>
+    <div className="container">
+      <h1>Add New Note</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Product ID</label>
           <input
             type="number"
@@ -76,7 +72,7 @@ const AddGrn = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Quantity</label>
           <input
             type="number"
@@ -89,7 +85,7 @@ const AddGrn = () => {
         <button type="button" onClick={addDetail}>
           Add Detail
         </button>
-        <div>
+        <div className="form-group">
           <h3>GRN Details</h3>
           <ul>
             {note.grnDetails.map((detail, index) => (
