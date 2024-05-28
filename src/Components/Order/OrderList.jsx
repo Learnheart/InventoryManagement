@@ -1,59 +1,59 @@
 import React, { useEffect, useState } from "react";
-import GrnService from "../../Api/GrnService";
 import { useNavigate } from "react-router-dom";
-import "./Grn.css";
+import OrderService from "../../Api/OrderService";
+import "../Grn/Grn.css";
 
-const GrnList = () => {
+const OrderList = () => {
   const navigate = useNavigate();
-  const [grns, setGrns] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const grnsPerPage = 10;
+  const orderPerPage = 10;
 
   useEffect(() => {
-    fetchGrns();
+    fetchOrders();
   }, []);
 
-  const fetchGrns = async () => {
+  const fetchOrders = async () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await GrnService.grnList();
-      console.log("Fetched GRNs:", data);
+      const data = await OrderService.orderList();
+      console.log("Fetched Orders:", data);
       if (Array.isArray(data)) {
-        setGrns(data);
+        setOrders(data);
       } else {
         setError("Invalid response format");
       }
     } catch (error) {
-      console.error("Error fetching GRNs:", error);
-      setError("Failed to fetch GRNs");
+      console.error("Error fetching Orders:", error);
+      setError("Failed to fetch Orders");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async (grnId) => {
+  const handleDelete = async (orderId) => {
     try {
-      await GrnService.deleteGrn(grnId);
-      fetchGrns();
+      await OrderService.deleteOrder(orderId);
+      fetchOrders();
     } catch (error) {
       console.error("Error deleting product:", error);
       setError("Failed to delete product");
     }
   };
 
-  const handleDetail = (grnId) => {
-    navigate(`/grnDetail/${grnId}`);
+  const handleDetail = (orderId) => {
+    navigate(`/orderDetail/${orderId}`);
   };
 
-  const indexOfLastGrn = currentPage * grnsPerPage;
-  const indexOfFirstGrn = indexOfLastGrn - grnsPerPage;
-  const currentGrns = grns.slice(indexOfFirstGrn, indexOfLastGrn);
+  const indexOfLastGrn = currentPage * orderPerPage;
+  const indexOfFirstGrn = indexOfLastGrn - orderPerPage;
+  const currentGrns = orders.slice(indexOfFirstGrn, indexOfLastGrn);
 
   const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(grns.length / grnsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(orders.length / orderPerPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -68,14 +68,14 @@ const GrnList = () => {
   return (
     <div>
       <div className="header">
-        <h2>GRN List</h2>
-        <button onClick={() => navigate("/staff/createNote")}>Add note</button>
+        <h1>Order List</h1>
+        <button onClick={() => navigate("/sale/createOrder")}>Add Order</button>
       </div>
       <table className="table">
         <thead>
           <tr>
             <th scope="col">ID</th>
-            <th scope="col">Import Date</th>
+            <th scope="col">Export Date</th>
             <th scope="col">Employee ID</th>
             <th scope="col">Total Price</th>
             <th scope="col"></th>
@@ -84,24 +84,28 @@ const GrnList = () => {
           </tr>
         </thead>
         <tbody>
-          {currentGrns.map((grn) => (
-            <tr key={grn.grnId}>
-              <th>{grn.grnId}</th>
-              <td>{grn.importDate}</td>
-              <td>{grn.empId}</td>
-              <td>{grn.totalPrice.toFixed(2)} VND</td>
+          {currentGrns.map((order) => (
+            <tr key={order.orderId}>
+              <th>{order.orderId}</th>
+              <td>{order.exportDate}</td>
+              <td>{order.empId}</td>
+              <td>{order.totalPrice.toFixed(2)} VND</td>
               <td>
-                <button onClick={() => handleDetail(grn.grnId)}>Detail</button>
+                <button onClick={() => handleDetail(order.orderId)}>
+                  Detail
+                </button>
               </td>
               <td>
                 <button
-                  onClick={() => navigate(`/staff/updateGrn/${grn.grnId}`)}
+                  onClick={() => navigate(`/sale/updateOrder/${order.orderId}`)}
                 >
                   Update
                 </button>
               </td>
               <td>
-                <button onClick={() => handleDelete(grn.grnId)}>Delete</button>
+                <button onClick={() => handleDelete(order.orderId)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
@@ -125,4 +129,4 @@ const GrnList = () => {
   );
 };
 
-export default GrnList;
+export default OrderList;
