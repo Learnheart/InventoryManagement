@@ -3,9 +3,9 @@ import { useAuth } from "../../../Context/AuthContext";
 import { useEffect } from "react";
 import Sidebar from "../../../Components/Navbar/Sidebar";
 import Header from "../../../Components/Header/Header";
-import OrderDetail from "../../../Components/Order/OrderDetail";
+import TrackingHistory from "../../../Components/Tracking/TrackingHistory";
 
-const ExportDetail = () => {
+const History = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -14,9 +14,9 @@ const ExportDetail = () => {
     if (!user.isAuthenticated) {
       alert("Unauthorize access");
       navigate("/auth/signin");
-    } else if (user.role != "MANAGER" && user.role != "SALES") {
+    } else if (user.role != "MANAGER" && user.role != "INVENTORY_STAFF") {
       alert("You don't have authorization to access this resource!");
-      navigate("/public/transaction-report");
+      navigate("/listTracking");
     }
   }, [user, navigate]);
 
@@ -30,7 +30,7 @@ const ExportDetail = () => {
           <Header />
           <div className="main-content">
             <div className="grnList ">
-              <OrderDetail />
+              <TrackingHistory />
             </div>
           </div>
         </div>
@@ -38,4 +38,4 @@ const ExportDetail = () => {
     </div>
   );
 };
-export default ExportDetail;
+export default History;

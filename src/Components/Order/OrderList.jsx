@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OrderService from "../../Api/OrderService";
 import "../Grn/Grn.css";
+import { useAuth } from "../../Context/AuthContext";
 
 const OrderList = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,6 +38,10 @@ const OrderList = () => {
 
   const handleDelete = async (orderId) => {
     try {
+      if (user.role != "MANAGER") {
+        alert("You don't have authorization to access this resource!");
+        navigate("/orderList");
+      }
       await OrderService.deleteOrder(orderId);
       fetchOrders();
     } catch (error) {
@@ -78,6 +84,7 @@ const OrderList = () => {
             <th scope="col">Export Date</th>
             <th scope="col">Employee ID</th>
             <th scope="col">Total Price</th>
+            <th scope="col">Payment method</th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -90,6 +97,7 @@ const OrderList = () => {
               <td>{order.exportDate}</td>
               <td>{order.empId}</td>
               <td>{order.totalPrice.toFixed(2)} VND</td>
+              <td>{order.paymentMethod}</td>
               <td>
                 <button onClick={() => handleDetail(order.orderId)}>
                   Detail
