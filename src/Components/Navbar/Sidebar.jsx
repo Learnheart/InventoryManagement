@@ -1,9 +1,11 @@
-// import React from "react";
+import React from "react";
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
+import { FaHome, FaBox, FaTruck, FaFileImport, FaShoppingCart, FaUsers } from "react-icons/fa"; // Import icons
 import "./Sidebar.css";
+import logo_ngang from "../../image/logo_ngang.jpg"; 
 
 const Sidebar = () => {
   const { logout } = useAuth();
@@ -15,26 +17,32 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar bg-light">
-      {/* Sidebar content */}
+    <div className="sidebar">
+      <img src={logo_ngang} alt="KANBAN Logo" />
       <Nav className="flex-column">
         <NavLink to="/dashboard" className="nav-link" activeclassname="active">
-          Dashboard
+          <FaHome className="nav-icon" /> Dashboard
         </NavLink>
         <NavLink to="/products" className="nav-link" activeclassname="active">
           Manage product
+        <NavLink to="/reports" className="nav-link" activeclassname="active">
+          <FaBox className="nav-icon" /> Manage Product
         </NavLink>
         <NavLink to="/" className="nav-link" activeclassname="active">
           Tracking
+        <NavLink to="/tracking" className="nav-link" activeclassname="active">
+          <FaTruck className="nav-icon" /> Tracking
         </NavLink>
         <NavLink to="/grnList" className="nav-link" activeclassname="active">
           Import
+        <NavLink to="/imports" className="nav-link" activeclassname="active">
+          <FaFileImport className="nav-icon" /> Import
         </NavLink>
-        <NavLink to="/settings" className="nav-link" activeclassname="active">
-          Orders
+        <NavLink to="/orders" className="nav-link" activeclassname="active">
+          <FaShoppingCart className="nav-icon" /> Orders
         </NavLink>
-        <NavLink to="/settings" className="nav-link" activeclassname="active">
-          Manage Employee
+        <NavLink to="/manage-employee" className="nav-link" activeclassname="active">
+          <FaUsers className="nav-icon" /> Manage Employee
         </NavLink>
       </Nav>
       <div className="setting mt-3">
