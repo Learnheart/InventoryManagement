@@ -15,6 +15,7 @@ import javax.sound.midi.Track;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrackingService {
@@ -60,15 +61,16 @@ public class TrackingService {
     public Tracking updateTracking(Integer trackingId, Tracking tracking) {
         Tracking existingTracking = repository.findById(trackingId)
                 .orElseThrow(() -> new IllegalArgumentException("Tracking record not found"));
-        int oldQuantityDB  = existingTracking.getQuantityDB();
-        existingTracking.setTrackingAt(new Date());
-        existingTracking.setProductId(tracking.getProductId());
+
+        int oldQuantityDB = existingTracking.getQuantityDB();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        existingTracking.setEmpId(authentication.getName());
-        existingTracking.setQuantityDB(productQuantity(tracking.getProductId()));
+        String empId = authentication.getName();
+
+        existingTracking.setTrackingAt(new Date());
+        existingTracking.setEmpId(empId);
         existingTracking.setQuantityTracking(tracking.getQuantityTracking());
 
-        saveTrackingHistory(existingTracking, oldQuantityDB, existingTracking.getQuantityDB(), existingTracking.getEmpId());
+        saveTrackingHistory(existingTracking, oldQuantityDB, existingTracking.getQuantityDB(), empId);
         return repository.save(existingTracking);
     }
     private void saveTrackingHistory(Tracking tracking, int oldQuantityDB, int newQuantityDB, String empId) {
@@ -86,4 +88,11 @@ public class TrackingService {
         trackingHistoryRepository.findAll().forEach(trackingHistories::add);
         return trackingHistories;
     }
+    public List<TrackingHistory> getTrackingHistoryByTrackingId(Integer trackingId) {
+        return trackingHistoryRepository.findByTrackingId(trackingId);
+    }
+    public Optional<Tracking> getTrackingId(Integer trackingId) {
+        return repository.findById(trackingId);
+    }
+
 }

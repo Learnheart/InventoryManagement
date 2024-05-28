@@ -22,9 +22,9 @@ public class OrderController {
         Orders newOrder = orderService.createOrder(order);
         return new ResponseEntity<>(newOrder, HttpStatus.CREATED);
     }
-    @GetMapping("/public/orderList")
-    public List<Orders> getAllOrders(@RequestParam(value = "searchKey", required = false) String searchKey) {
-        return orderService.getAllOrders(searchKey);
+    @GetMapping("/orderList")
+    public ResponseEntity<List<Orders>> getAllOrders(@RequestParam(value = "searchKey", required = false) String searchKey) {
+        return ResponseEntity.ok(orderService.getAllOrders(searchKey));
     }
     @DeleteMapping("/manager/deleteOrder/{orderId}")
     public ResponseEntity<String> deleteOrder(@PathVariable Integer orderId) {
@@ -36,11 +36,11 @@ public class OrderController {
 //        Orders updateOrder = orderService.updateOrder(orderId, order);
         return ResponseEntity.ok(orderService.updateOrder(orderId, order));
     }
-    @GetMapping("/public/orderDetail/{orderId}")
+    @GetMapping("/orderDetail/{orderId}")
     public ResponseEntity<Orders> orderDetail(@PathVariable Integer orderId) {
         return ResponseEntity.ok(orderService.getOrderById(orderId));
     }
-    @GetMapping("/public/productQuantities/{productId}")
+    @GetMapping("/productQuantities/{productId}")
     public Integer getProductQuantitiesFromOrders(@PathVariable Integer productId) {
         return orderService.totalExportProducts(productId);
     }

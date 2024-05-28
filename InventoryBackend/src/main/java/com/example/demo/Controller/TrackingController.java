@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.sound.midi.Track;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TrackingController {
@@ -27,7 +28,7 @@ public class TrackingController {
     public ResponseEntity<Tracking> updateTracking(@PathVariable Integer trackingId, @RequestBody Tracking tracking) {
         return ResponseEntity.ok(trackingService.updateTracking(trackingId, tracking));
     }
-    @DeleteMapping("/staff/deleteTracking/{trackingId}")
+    @DeleteMapping("/manager/deleteTracking/{trackingId}")
     public ResponseEntity<String> deleteTracking(@PathVariable Integer trackingId) {
         return ResponseEntity.ok(trackingService.deleteTracking(trackingId));
     }
@@ -35,8 +36,16 @@ public class TrackingController {
     public ResponseEntity<List<TrackingHistory>> trackingHistory() {
         return ResponseEntity.ok(trackingService.trackingHistory());
     }
-    @GetMapping("/public/listTracking")
+    @GetMapping("/listTracking")
     public ResponseEntity<List<Tracking>> trackingList() {
         return ResponseEntity.ok(trackingService.getAllTracking());
+    }
+    @GetMapping("/staff/history/{trackingId}")
+    public ResponseEntity<List<TrackingHistory>> historyOfTracking (@PathVariable Integer trackingId) {
+        return ResponseEntity.ok(trackingService.getTrackingHistoryByTrackingId(trackingId));
+    }
+    @GetMapping("/tracking/{trackingId}")
+    public ResponseEntity<Optional<Tracking>> getTrackingById(@PathVariable Integer trackingId) {
+        return ResponseEntity.ok(trackingService.getTrackingId(trackingId));
     }
 }
