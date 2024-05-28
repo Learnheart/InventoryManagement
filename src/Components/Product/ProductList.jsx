@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductService from "../../Api/ProductService";
 import { useNavigate } from "react-router-dom";
+import "./Product.css";
 
 const ProductList = () => {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ const ProductList = () => {
   return (
     <div>
       <div className="header">
-        <h1>Product List</h1>
+        <h2>Product List</h2>
         <button onClick={() => navigate("/manager/addProduct")}>
           Add Product
         </button>
