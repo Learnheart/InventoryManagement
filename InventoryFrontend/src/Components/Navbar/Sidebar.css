@@ -1,0 +1,43 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar img {
+  width: 100px; /* Đặt kích thước của logo */
+  margin-bottom: 20px; /* Khoảng cách dưới logo */
+}
+
+.nav-link {
+  width: 100%;
+  padding: 15px 20px; /* Tăng padding để nav link lớn hơn */
+  color: #000;
+  text-decoration: none;
+  font-size: 14px; /* Tăng font-size */
+  margin-bottom: 10px; /* Tăng khoảng cách giữa các nav link */
+  display: flex;
+  align-items: center; /* Đảm bảo icon và text được căn giữa */
+}
+
+.nav-icon {
+  margin-right: 10px; /* Khoảng cách giữa icon và text */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #007bff; /* Màu xanh cho liên kết đang active */
+}
+
+.nav-link:hover {
+  background-color: #e9ecef; /* Màu nền khi hover */
+}
+
+.setting {
+  margin-top: auto;
+  padding-bottom: 20px;
+}

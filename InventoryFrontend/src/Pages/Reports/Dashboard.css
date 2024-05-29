@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  height: 100vh;
+  background-color: #d0d3d9;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.col-md-3 {
+  width: 250px;
+  background-color: white;
+}
+
+.col-md-9 {
+  flex: 1;
+  background-color: #f4f5f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px;
+  height: 800px !important;
+  margin: auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}

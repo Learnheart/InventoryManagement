@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1.2em; /* Tăng kích thước font chữ */
+  height: 80px; /* Tăng chiều cao của header */
+}
+
+.form-control {
+  width: 500px;
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 0.9em;
+}
+.name {
+  margin-left: 170px;
+  width: 400px;
+}
+
+.btn {
+  font-size: 0.9em;
+  padding: 5px 10px; /* Giảm padding */
+}
+
+.d-flex {
+  width: 100%;
+  max-width: 1000px;
+}
