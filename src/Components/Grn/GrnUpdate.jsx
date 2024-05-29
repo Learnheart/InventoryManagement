@@ -142,19 +142,19 @@ const GrnUpdate = () => {
                 Product ID: {detail.product.productId}, Quantity:{" "}
                 {detail.quantity}
                 <button
-                  type="button"
-                  className="edit-button"
-                  onClick={() => editDetail(index)}
-                >
-                  Edit
-                </button>
-                <button
-                  type="button"
-                  className="delete-button"
-                  onClick={() => deleteDetail(index)}
-                >
-                  Delete
-                </button>
+                    type="button"
+                    className="btn btn-warning btn-sm"
+                    onClick={() => editDetail(index)}
+                  >
+                    Edit
+                  </button>{" "}
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-sm"
+                    onClick={() => deleteDetail(index)}
+                  >
+                    Delete
+                  </button>
               </li>
             ))}
           </ul>
