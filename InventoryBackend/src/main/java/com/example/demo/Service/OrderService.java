@@ -5,7 +5,10 @@ import com.example.demo.Repository.HistoryRepository;
 import com.example.demo.Repository.OrderRepository;
 import com.example.demo.Repository.ProductRepository;
 import com.example.demo.Repository.TrackingRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,6 +27,8 @@ public class OrderService {
     private TrackingRepository trackingRepository;
     @Autowired
     private HistoryRepository trackingHistoryRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
     @Transactional
     public Orders createOrder(Orders order) {
         Orders newOrder = new Orders();
@@ -86,9 +91,22 @@ public class OrderService {
         orderRepository.deleteById(orderId);
         return "Order " + orderId + " has been deleted.";
     }
+//    public Orders getOrderById(Integer orderId) {
+//        return orderRepository.findById(orderId).orElseThrow();
+//    }
+    @Transactional
     public Orders getOrderById(Integer orderId) {
-        return orderRepository.findById(orderId).orElseThrow();
+        Orders order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found!"));
+
+        // Manually initialize the proxy Product entities
+        for (OrderDetail detail : order.getOrderDetails()) {
+            Hibernate.initialize(detail.getProduct());
+        }
+
+        return order;
     }
+
     @Transactional
     public Orders updateOrder(Integer orderId, Orders newOrder) {
         Orders currentOrder = getOrderById(orderId);
@@ -102,7 +120,8 @@ public class OrderService {
                 orderDetail.setProduct(product);
                 orderDetail.setOrder(currentOrder);
                 orderDetail.setPrice(orderDetail.detailPrice());
-                currentOrder.getOrderDetails().add(orderDetail);
+                OrderDetail mergedOrderDetail = entityManager.merge(orderDetail);
+                currentOrder.getOrderDetails().add(mergedOrderDetail);
 
                 Tracking tracking = trackingRepository.findByProductId(product.getProductId());
                 if (tracking != null) {

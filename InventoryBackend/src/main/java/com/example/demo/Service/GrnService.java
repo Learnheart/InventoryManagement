@@ -4,6 +4,8 @@ import com.example.demo.Entity.*;
 import com.example.demo.Repository.GrnRepository;
 import com.example.demo.Repository.HistoryRepository;
 import com.example.demo.Repository.TrackingRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ public class GrnService {
     private TrackingRepository trackingRepository;
     @Autowired
     private HistoryRepository trackingHistoryRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public GoodReceivedNote createNewNote(GoodReceivedNote note) {
         GoodReceivedNote newNote = new GoodReceivedNote();
@@ -95,7 +99,8 @@ public class GrnService {
                 grnDetail.setProduct(product);
                 grnDetail.setNote(currentNote);
                 grnDetail.setPrice(grnDetail.getGrnPrice());
-                currentNote.getGrnDetails().add(grnDetail);
+                GrnDetail mergedGrnDetail = entityManager.merge(grnDetail);
+                currentNote.getGrnDetails().add(mergedGrnDetail);
 
                 Tracking tracking = trackingRepository.findByProductId(product.getProductId());
                 if (tracking != null) {

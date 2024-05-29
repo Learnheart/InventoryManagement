@@ -52,9 +52,15 @@ public class ProductService {
         saveTrackingHistory(tracking, 0, tracking.getQuantityDB(), "Default");
     }
 
+    @Transactional
     public String deleteProduct(Integer productId) {
+        List<Tracking> trackings = trackingRepository.listTrackingByProductId(productId); // Using the custom query method
+        for (Tracking tracking : trackings) {
+            trackingHistoryRepository.deleteByTrackingId(tracking.getTrackingId());
+            trackingRepository.delete(tracking);
+        }
         repository.deleteById(productId);
-        return "Product with ID " + productId + " deleted successfully!";
+        return "Product with ID " + productId + " and its tracking records deleted successfully!";
     }
 
     public String updateProduct(Integer productId, Product product) {

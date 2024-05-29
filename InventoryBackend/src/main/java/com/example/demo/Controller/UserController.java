@@ -19,50 +19,52 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping({"/manager/userList"})
-//    @PreAuthorize("hasRole('MANAGER')")
     public ResponseEntity<List<User>> userList() {
         List<User> userList = userRepository.findAll();
         return ResponseEntity.ok(userList);
     }
 
-    @GetMapping("/manager/getUser/{empId}")
+    @GetMapping("/getUser/{empId}")
     public ResponseEntity<User> getUser(@PathVariable Integer empId) {
         Optional<User> user = userRepository.findById(empId);
         if (user.isPresent()) {
-            return new ResponseEntity<User>(user.get(), HttpStatus.FOUND);
+            return new ResponseEntity<User>(user.get(), HttpStatus.OK);
         }else {
             return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @PutMapping("/manager/update/{empId}")
+    @PutMapping("/updateUser/{empId}")
     public String updateUser(@PathVariable Integer empId, @RequestBody User user) {
-        Optional<User> emp = userRepository.findById(empId);
-        if (emp.isPresent()) {
-            User existedUser = emp.get();
-            existedUser.setEmpName(user.getEmpName());
-            existedUser.setPhoneNumber(user.getPhoneNumber());
-            existedUser.setAddress(user.getAddress());
-            existedUser.setRole(user.getRole());
-            userRepository.save(existedUser);
-            return "User with ID" + empId + "updated successfully!";
-        }else {
-            return "User" + empId + "Not found";
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String empId = authentication.getName();
+        Optional<User> optionalUser = userRepository.findById(empId);
+
+        if (optionalUser.isPresent()) {
+            User existingUser = optionalUser.get();
+            existingUser.setEmpName(user.getEmpName());
+            existingUser.setPhoneNumber(user.getPhoneNumber());
+            existingUser.setAddress(user.getAddress());
+            existingUser.setRole(user.getRole());
+            userRepository.save(existingUser);
+            return "User with ID " + existingUser.getEmpId() + " updated successfully!";
+        } else {
+            return "User not found";
         }
     }
     @DeleteMapping("/manager/delete/{empId}")
-    public String deleteUser(@PathVariable Integer empId) {
+    public ResponseEntity<String> deleteUser(@PathVariable Integer empId) {
         userRepository.deleteById(empId);
-        return "User " + empId + "deleted successfully!";
+        return ResponseEntity.ok("User " + empId + "deleted successfully!");
     }
 
-    @GetMapping("/public/id")
-    public String getCurrentUserId() {
+    @GetMapping("/id")
+    public ResponseEntity<String> getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(authentication);
         System.out.println(authentication.getDetails());
         System.out.println(authentication.getName());
-        return authentication.getName();
+        return ResponseEntity.ok(authentication.getName());
     }
 
     @GetMapping("/staff")

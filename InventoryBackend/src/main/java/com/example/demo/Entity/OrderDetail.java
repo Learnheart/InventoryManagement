@@ -19,7 +19,7 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderDetailId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
     @ManyToOne
