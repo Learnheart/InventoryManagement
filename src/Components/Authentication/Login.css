@@ -1,7 +1,6 @@
 .login-container,
 .register-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -14,9 +13,6 @@ h3 {
   font-weight: bold;
 }
 
-.header {
-  margin-bottom: 20px;
-}
 
 .header .title {
   font-size: 18px; /* Thu nhỏ cỡ chữ */
@@ -29,11 +25,15 @@ h3 {
 }
 
 .form-content {
-  width: 300px; /* Thu nhỏ form */
-  padding: 0; /* Loại bỏ padding */
+  width: 300px;
+  padding: 0;
+  margin-right: 0px;
   background-color: white;
-  margin-left: 300px;
+  margin-left: 200px;
+  margin-right: -100px;
+  border: none; /* Loại bỏ viền */
 }
+
 
 .form-group {
   margin-bottom: 10px; /* Điều chỉnh margin */
@@ -108,7 +108,8 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 50px;
+  margin-right: 200px;
+
 }
 
 .left-side img {
@@ -122,127 +123,8 @@ h3 {
   color: #333;
   font-weight: bold;
 }
-.login-container,
-.register-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: white; /* Đặt nền trắng */
-  font-family: "Arial", sans-serif;
-}
 
-h3 {
-  text-align: center;
-  font-weight: bold;
-}
-
-.header {
-  margin-bottom: 20px;
-}
-
-.header .title {
-  font-size: 18px; /* Thu nhỏ cỡ chữ */
-  color: #333;
-}
-
-.error-message {
-  color: red;
-  font-size: 12px; /* Thu nhỏ cỡ chữ */
-}
-
-.form-content {
-  width: 300px; /* Thu nhỏ form */
-  padding: 0; /* Loại bỏ padding */
-  background-color: white;
-  margin-left: 300px;
-}
-
-.form-group {
-  margin-bottom: 10px; /* Điều chỉnh margin */
-}
-
-.form-group label {
+.header img {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 12px; /* Thu nhỏ cỡ chữ */
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 5px; /* Điều chỉnh padding */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 12px; /* Thu nhỏ cỡ chữ */
-}
-
-.password-input-container {
-  display: flex;
-  align-items: center;
-}
-
-.password-input-container input {
-  flex: 1;
-}
-
-.toggle-password {
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.button {
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  padding: 5px; /* Điều chỉnh padding */
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 12px; /* Thu nhỏ cỡ chữ */
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.moveToSignIn {
-  margin-top: 10px; /* Điều chỉnh margin */
-  text-align: center;
-  font-size: 12px; /* Thu nhỏ cỡ chữ */
-}
-
-.moveToSignIn span {
-  margin-right: 5px;
-}
-
-.moveToSignIn a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.moveToSignIn a:hover {
-  text-decoration: underline;
-}
-
-.left-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-right: 50px;
-}
-
-.left-side img {
-  width: 150px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.left-side h1 {
-  font-size: 36px; /* Thu nhỏ cỡ chữ */
-  color: #333;
-  font-weight: bold;
+  margin: 0 auto 20px; /* Căn giữa logo ngang và thêm margin dưới */
 }

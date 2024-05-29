@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../Product/Product.css";
 import "../Authentication/Login.css";
 import { useAuth } from "../../Context/AuthContext";
+import "./user.css";
 
 const UpdateUser = () => {
   const { user } = useAuth();
@@ -61,9 +62,6 @@ const UpdateUser = () => {
   return (
     <div className="register-container">
       <main className="form-content">
-        <div className="header">
-          {errMsg && <p className="error-message">{errMsg}</p>}
-        </div>
         <h3 className="title">Update User ID: {empId}</h3>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -114,9 +112,8 @@ const UpdateUser = () => {
               <option value="SALES">Sales</option>
             </select>
           </div>
-          <div className="button" onClick={handleSubmit}>
-            <span>Update User</span>
-          </div>
+          {errMsg && <p className="error">{errMsg}</p>}
+          <button type="submit" className="button">Update User</button>
         </form>
       </main>
     </div>

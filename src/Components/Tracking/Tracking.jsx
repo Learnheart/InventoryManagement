@@ -3,6 +3,7 @@ import TrackingService from "../../Api/TrackingService";
 import { useNavigate } from "react-router-dom";
 import "../Product/Product.css";
 import { useAuth } from "../../Context/AuthContext";
+import "./Modal.css";
 
 const Tracking = () => {
   const { user } = useAuth();

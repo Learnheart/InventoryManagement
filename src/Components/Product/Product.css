@@ -8,6 +8,9 @@
     margin-left: 20px;
   }
   
+  .chart-container{
+    padding: 0px;
+  }
   .table {
     width: 100%;
     border-collapse: collapse;

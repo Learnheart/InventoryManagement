@@ -7,6 +7,7 @@ import AuthService from "../../Api/AuthService";
 import { toast } from "react-toastify";
 import "./Login.css";
 import logo from "../../image/logo.jpg";
+import logo_ngang from "../../image/logo_ngang.jpg";
 
 const NUMBER_REGEX = /^[0-9\b]+$/;
 
@@ -74,6 +75,7 @@ const LoginPage = () => {
       </aside>
       <main className="form-content">
         <div className="header">
+        <img src={logo_ngang} alt="KANBAN Logo" />
           {errMsg && <p className="error-message">{errMsg}</p>}
         </div>
         <h3 className="title">Log In</h3>

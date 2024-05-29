@@ -68,10 +68,10 @@ const OrderCreated = () => {
   };
 
   return (
-    <div>
-      <h2>Add New Order</h2>
+    <div className="container">
+      <h1>Add New Order</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Product ID</label>
           <input
             type="number"
@@ -79,9 +79,10 @@ const OrderCreated = () => {
             value={details.productId}
             onChange={handleInputChange}
             required
+            autoComplete="off"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Quantity</label>
           <input
             type="number"
@@ -89,32 +90,29 @@ const OrderCreated = () => {
             value={details.quantity}
             onChange={handleInputChange}
             required
+            autoComplete="off"
           />
         </div>
-        <button type="button" onClick={addDetail}>
-          Add Detail
-        </button>
-        <div>
+        <button type="button" onClick={addDetail}>Add Detail</button>
+        <div className="form-group">
           <h3>Order Details</h3>
           <ul>
             {order.orderDetails.map((detail, index) => (
               <li key={index}>
-                Product ID: {detail.product.productId}, Quantity:{" "}
-                {detail.quantity}
+                Product ID: {detail.product.productId}, Quantity: {detail.quantity}
               </li>
             ))}
           </ul>
         </div>
-        <div>
+        <div className="form-group">
           <label>Select Payment Method</label>
           <select
             value={order.paymentMethod}
             onChange={handlePaymentMethodChange}
             required
+            className="form-control"
           >
-            <option value="" disabled>
-              Select payment method
-            </option>
+            <option value="" disabled>Select payment method</option>
             <option value="Cash">Cash</option>
             <option value="Credit Card">Credit card</option>
             <option value="Internet Banking">Internet banking</option>

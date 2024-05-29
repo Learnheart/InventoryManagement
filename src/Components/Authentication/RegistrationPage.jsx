@@ -5,8 +5,6 @@ import AuthService from "../../Api/AuthService";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
-import "./Login.css";
-import logo from "../../image/logo.jpg";
 
 const NUMBER = /^[0-9\b]+$/;
 
@@ -74,14 +72,7 @@ function RegistrationPage() {
 
   return (
     <div className="register-container">
-      <aside className="left-side">
-        {/* Sử dụng đúng tên biến import */}
-        <img src={logo} alt="KANBAN Logo" />
-      </aside>
       <main className="form-content">
-        <div className="header">
-          {errMsg && <p className="error-message">{errMsg}</p>}
-        </div>
         <h3 className="title">Create an account</h3>
         <div className="form-group">
           <label htmlFor="empName">Name*</label>

@@ -51,10 +51,10 @@ const TrackingUpdate = () => {
   };
 
   return (
-    <div>
-      <h2>Update Tracking ID: {trackingId}</h2>
+    <div className="container">
+      <h1>Update Tracking ID: {trackingId}</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Quantity Tracking</label>
           <input
             type="number"
