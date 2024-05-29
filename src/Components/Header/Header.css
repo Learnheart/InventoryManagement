@@ -10,9 +10,14 @@
   }
   
   .form-control {
-    width: 450px; 
+    width: 500px; 
+    margin-left: 20px;
     padding: 5px; 
     font-size: 0.9em; 
+  }
+  .name{
+    margin-left:170px ;
+    width: 400px;
   }
   
   .btn {
@@ -21,8 +26,8 @@
   }
   
   .d-flex {
-    width: 100%; 
-    max-width: 400px; 
+    width: 100%;
+    max-width: 1000px; 
   }
 
   
