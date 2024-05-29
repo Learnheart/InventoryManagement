@@ -91,8 +91,6 @@ const GrnUpdate = () => {
     e.preventDefault();
     try {
       const response = await GrnService.updateGrn(grnId, note); // Update the existing GRN
-      console.log(note);
-      console.log(response.status);
       if (response.status === 200) {
         toast.success("GRN updated successfully");
         navigate("/grnList");
@@ -100,17 +98,16 @@ const GrnUpdate = () => {
         toast.error("Failed to update GRN");
       }
     } catch (error) {
-      console.log(note);
       console.error("Error updating GRN:", error);
       toast.error("Error updating GRN");
     }
   };
 
   return (
-    <div>
-      <h2>Update Note ID: {grnId}</h2>
+    <div className="container">
+      <h1>Update Note ID: {grnId}</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Product ID</label>
           <input
             type="number"
@@ -120,7 +117,7 @@ const GrnUpdate = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Quantity</label>
           <input
             type="number"
@@ -130,20 +127,32 @@ const GrnUpdate = () => {
             required
           />
         </div>
-        <button type="button" onClick={addOrUpdateDetail}>
+        <button
+          type="button"
+          className="edit-button"
+          onClick={addOrUpdateDetail}
+        >
           {editingIndex !== null ? "Update Detail" : "Add Detail"}
         </button>
-        <div>
+        <div className="form-group">
           <h3>GRN Details</h3>
           <ul>
             {note.grnDetails.map((detail, index) => (
               <li key={index}>
                 Product ID: {detail.product.productId}, Quantity:{" "}
                 {detail.quantity}
-                <button type="button" onClick={() => editDetail(index)}>
+                <button
+                  type="button"
+                  className="edit-button"
+                  onClick={() => editDetail(index)}
+                >
                   Edit
                 </button>
-                <button type="button" onClick={() => deleteDetail(index)}>
+                <button
+                  type="button"
+                  className="delete-button"
+                  onClick={() => deleteDetail(index)}
+                >
                   Delete
                 </button>
               </li>

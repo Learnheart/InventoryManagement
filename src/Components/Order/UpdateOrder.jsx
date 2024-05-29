@@ -113,10 +113,10 @@ const UpdateOrder = () => {
   };
 
   return (
-    <div>
-      <h2>Update Order ID: {orderId}</h2>
+    <div className="container">
+      <h1>Update Order ID: {orderId}</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Product ID</label>
           <input
             type="number"
@@ -124,9 +124,10 @@ const UpdateOrder = () => {
             value={details.productId}
             onChange={handleInputChange}
             required
+            className="form-control"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Quantity</label>
           <input
             type="number"
@@ -134,34 +135,50 @@ const UpdateOrder = () => {
             value={details.quantity}
             onChange={handleInputChange}
             required
+            className="form-control"
           />
         </div>
-        <button type="button" onClick={addOrUpdateDetail}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={addOrUpdateDetail}
+        >
           {editingIndex !== null ? "Update Detail" : "Add Detail"}
         </button>
-        <div>
+        <div className="form-group">
           <h3>GRN Details</h3>
-          <ul>
+          <ul className="list-group">
             {order.orderDetails.map((detail, index) => (
-              <li key={index}>
+              <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                 Product ID: {detail.product.productId}, Quantity:{" "}
                 {detail.quantity}
-                <button type="button" onClick={() => editDetail(index)}>
-                  Edit
-                </button>
-                <button type="button" onClick={() => deleteDetail(index)}>
-                  Delete
-                </button>
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-warning btn-sm"
+                    onClick={() => editDetail(index)}
+                  >
+                    Edit
+                  </button>{" "}
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-sm"
+                    onClick={() => deleteDetail(index)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-        <div>
+        <div className="form-group">
           <label>Select Payment Method</label>
           <select
             value={order.paymentMethod}
             onChange={handlePaymentMethodChange}
             required
+            className="form-control"
           >
             <option value="" disabled>
               Select payment method
@@ -171,7 +188,9 @@ const UpdateOrder = () => {
             <option value="Internet Banking">Internet banking</option>
           </select>
         </div>
-        <button type="submit">Update Note</button>
+        <button type="submit" className="btn btn-primary">
+          Update Note
+        </button>
       </form>
     </div>
   );
